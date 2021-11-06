@@ -42,30 +42,20 @@ public class Client{
 			caseNum = scanner.nextInt();
 
 			if (caseNum == 3) {
-				out.writeUTF("Q");
-					break;
-				}		//no need to take any data from the user, end the app (nested of while checking)
-
-			
-			System.out.println("Enter Word:");
-			out.writeUTF("");			//default, TOBE checked later
-			
+				break;
+			}		//no need to take any data from the user, end the app (nested of while checking)
+			System.out.println("Enter Word:");		
 			line = input.readLine();  
 
 				//No need to consider caseNum == 1 since it's the default
-				if(caseNum == 2)
-				{	
-					line="encyrpted data";		//it will be sent later
-					//Encryprion will go here
-				}
-				else
-				System.out.println("Enter number from the menu");
-
-			
+			if(caseNum == 2)
+			{	
+				line="encyrpted data";		//it will be sent later
+				//Encryprion will go here
+			}
 			//Send it once
-			   	out.writeUTF(line);  
-		
-			
+			out.writeUTF(line);
+			System.out.println("Enter number from the menu");  
 		}							
 
 		System.out.println("Closing connection");

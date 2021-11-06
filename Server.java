@@ -23,20 +23,22 @@ public class Server
 			System.out.println("Client accepted");
 
 			// takes input from the client socket
-			in = new DataInputStream(
-				new BufferedInputStream(socket.getInputStream()));
+			in = new DataInputStream(socket.getInputStream());
 
-			String line = "";
+			String line="";
 			// reads message from client until "Over" is sent
-			while (true)
-			{
-					if (in.readUTF() == "Q") break;			//here and only here breaking the loop before receiving the word
+			try{
+				while (true)
+				{
 					line = in.readUTF();
+					if(Integer.parseInt(line) == 3)break;
+					line=in.readUTF();
 					System.out.println(line);
-	
+				}
 			}
+			finally{
 			System.out.println("Closing connection");
-
+			}
 			// close connection
 			socket.close();
 			in.close();
