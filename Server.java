@@ -10,11 +10,10 @@ public class Server
 	private DataInputStream in	 = null;
 
 	// constructor with port
-	public Server(int port)
+	public Server(int port)throws Exception
 	{
 		// starts server and waits for a connection
-		try
-		{
+	
 			server = new ServerSocket(port);
 			System.out.println("Server started");
 
@@ -28,20 +27,13 @@ public class Server
 				new BufferedInputStream(socket.getInputStream()));
 
 			String line = "";
-
 			// reads message from client until "Over" is sent
-			while (!line.equals("Q"))
+			while (true)
 			{
-				try
-				{
+					if (in.readUTF() == "Q") break;			//here and only here breaking the loop before receiving the word
 					line = in.readUTF();
 					System.out.println(line);
-
-				}
-				catch(IOException i)
-				{
-					System.out.println(i);
-				}
+	
 			}
 			System.out.println("Closing connection");
 
@@ -49,13 +41,10 @@ public class Server
 			socket.close();
 			in.close();
 		}
-		catch(IOException i)
-		{
-			System.out.println(i);
-		}
-	}
+		
+	
 
-	public static void main(String args[])
+	public static void main(String args[])throws Exception
 	{
 		Server server = new Server(5000);
 	}
