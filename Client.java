@@ -46,7 +46,7 @@ public class Client{
 					break;
 				}		//no need to take any data from the user, end the app (nested of while checking)
 
-			else{
+			
 			System.out.println("Enter Word:");
 			out.writeUTF("");			//default, TOBE checked later
 			
@@ -65,7 +65,7 @@ public class Client{
 			//Send it once
 			   	out.writeUTF(line);  
 		
-			}
+			
 		}							
 
 		System.out.println("Closing connection");
