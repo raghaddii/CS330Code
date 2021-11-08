@@ -14,61 +14,98 @@ public class Client{
 
 
 	// constructor to put ip address and port
-	public Client(String address, int port) throws Exception
+	public Client(String address, int port)
 	{
 		Scanner scanner = new Scanner(System.in);
 
 		// establish a connection
-		
-		socket = new Socket(address, port);
-		System.out.println("Connected");
+		try
+		{
+			socket = new Socket(address, port);
+			System.out.println("Connected");
 
 			// takes input from terminal
-		input = new DataInputStream(System.in);
+			input = new DataInputStream(System.in);
 
 			// sends output to the socket
-		out = new DataOutputStream(socket.getOutputStream());
+			out = new DataOutputStream(socket.getOutputStream());
+
+		}
+		catch(UnknownHostException u)
+		{
+			System.out.println(u);
+		}
+		catch(IOException i)
+		{
+			System.out.println(i);
+		}
 
 		// string to read message from input
 		String line = "";
         int caseNum = 0;
 
 		// keep reading until "Over" is input
-		while (true){
+		while (!line.equals("Q")){
 
 			System.out.println("1 Open mode");
 			System.out.println("2 Secure mode");
 			System.out.println("3 Quit");
 			caseNum = scanner.nextInt();
 
-			if (caseNum == 3) {
-				break;
-			}		//no need to take any data from the user, end the app (nested of while checking)
-			System.out.println("Enter Word:");		
-			line = input.readLine();  
+			switch(caseNum){
 
-				//No need to consider caseNum == 1 since it's the default
-			if(caseNum == 2)
-			{	
-				line="encyrpted data";		//it will be sent later
-				//Encryprion will go here
+				case 1:{
+
+					System.out.println("Enter Word:");
+					try {
+				        line = input.readLine();
+				        out.writeUTF(line);
+			        }
+			        catch(IOException i){
+                        System.out.println(i);
+                    }
+				}
+				break;
+
+				case 2:{
+
+					System.out.println("Enter Word:");
+				}
+				break;
+
+				case 3:{
+					try {
+				        line = "Q";
+				        out.writeUTF(line);
+			        }
+			        catch(IOException i){
+                        System.out.println(i);
+                    }
+				}
+				break;
+				default:
+				System.out.println("Enter number from the menu");
+
 			}
-			//Send it once
-			out.writeUTF(line);
-			System.out.println("Enter number from the menu");  
-		}							
+			
+		}
 
 		System.out.println("Closing connection");
 
 		// close the connection
-
-		input.close();
-		out.close();
-		socket.close();
-	
+		try
+		{
+			input.close();
+			out.close();
+			socket.close();
+		}
+		catch(IOException i)
+		{
+			System.out.println(i);
+		}
 	}
 
-	public static void main(String args[])throws Exception
+	public static void main(String args[])
 	{
 		Client client = new Client("127.0.0.1", 5000);
 	}
