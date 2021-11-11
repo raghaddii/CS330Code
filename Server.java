@@ -35,9 +35,18 @@ public class Server
 				try
 				{
 					line = in.readUTF();
-					if(line.equals("Q"))break;
-					System.out.println(line);
+					if(line.equals("Q"))
+					break;
 
+					if(line.startsWith("O")){
+						line = line.substring(1);
+	
+					}else if(line.startsWith("S")){
+						line = line.substring(1);
+						//decrytion code goes here
+					}
+					
+                                         System.out.println(line);
 				}
 				catch(IOException i)
 				{
@@ -58,7 +67,7 @@ public class Server
 
 	public static void main(String args[])
 	{
-		Server server = new Server(5000);
+		Server server = new Server(500);
 	}
 }
 
