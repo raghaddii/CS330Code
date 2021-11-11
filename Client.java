@@ -16,7 +16,6 @@ public class Client{
 	// constructor to put ip address and port
 	public Client(String address, int port)
 	{
-		Scanner scanner = new Scanner(System.in);
 
 		// establish a connection
 		try
@@ -42,51 +41,28 @@ public class Client{
 
 		// string to read message from input
 		String line = "";
-        int caseNum = 0;
+        
 
 		// keep reading until "Over" is input
 		while (!line.equals("Q")){
 
-			System.out.println("1 Open mode");
-			System.out.println("2 Secure mode");
-			System.out.println("3 Quit");
-			caseNum = scanner.nextInt();
+			System.out.println("Open mode");
+			System.out.println("Secure mode");
+			System.out.println("Quit");
 
-			switch(caseNum){
+			try
+            {
+                line = input.readLine();
 
-				case 1:{
-
-					System.out.println("Enter Word:");
-					try {
-				        line = input.readLine();
-				        out.writeUTF(line);
-			        }
-			        catch(IOException i){
-                        System.out.println(i);
-                    }
+				if(line.startsWith("S")){
+					//Encryotion code goes here
 				}
-				break;
-
-				case 2:{
-
-					System.out.println("Enter Word:");
-				}
-				break;
-
-				case 3:{
-					try {
-				        line = "Q";
-				        out.writeUTF(line);
-			        }
-			        catch(IOException i){
-                        System.out.println(i);
-                    }
-				}
-				break;
-				default:
-				System.out.println("Enter number from the menu");
-
-			}
+				out.writeUTF(line);
+            }
+            catch(IOException i)
+            {
+                System.out.println(i);
+            }
 			
 		}
 
@@ -107,7 +83,7 @@ public class Client{
 
 	public static void main(String args[])
 	{
-		Client client = new Client("127.0.0.1", 5000);
+		Client client = new Client("127.0.0.1", 500);
 	}
 }
 
