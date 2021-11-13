@@ -30,23 +30,27 @@ public class Server
 			String line = "";
 
 			// reads message from client until "Over" is sent
-			while (!line.equals("Q"))
+			while (!line.equals("3"))
 			{
 				try
 				{
 					line = in.readUTF();
-					if(line.equals("Q"))
+					if(line.equals("3"))
 					break;
 
-					if(line.startsWith("O")){
+					if(line.startsWith("1")){
+
 						line = line.substring(1);
 	
-					}else if(line.startsWith("S")){
+					}
+					else if(line.startsWith("2")){
 						line = line.substring(1);
 						//decrytion code goes here
 					}
 					
                                          System.out.println(line);
+										
+
 				}
 				catch(IOException i)
 				{
