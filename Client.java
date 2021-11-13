@@ -44,21 +44,27 @@ public class Client{
         
 
 		// keep reading until "Over" is input
-		while (!line.equals("Q")){
 
-			System.out.println("Open mode");
-			System.out.println("Secure mode");
-			System.out.println("Quit");
+		while (!line.equals("3")){
 
+
+			System.out.println("1- Open mode");
+			System.out.println("2- Secure mode");
+			System.out.println("3- Quit");
+		
+		
 			try
             {
                 line = input.readLine();
 
-				if(line.startsWith("S")){
+				if (line.startsWith("2")){
 					//Encryotion code goes here
-				}
-				out.writeUTF(line);
-            }
+				}	
+					
+					out.writeUTF(line);	
+				
+			 }
+			
             catch(IOException i)
             {
                 System.out.println(i);
