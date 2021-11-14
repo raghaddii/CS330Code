@@ -29,8 +29,8 @@ public class Server
 
 			String line = "";
 
-			// reads message from client until "Over" is sent
-			while (!line.equals("3"))
+			// reads message from client until "3" is sent
+			while (true)
 			{
 				try
 				{
@@ -39,17 +39,18 @@ public class Server
 					break;
 
 					if(line.startsWith("1")){
-
 						line = line.substring(1);
-	
 					}
-					else if(line.startsWith("2")){
+
+					else {							//Since there's no other choise, go option 2
 						line = line.substring(1);
-						//decrytion code goes here
+						String d =Bob(line,3);
+						System.out.println("Decrypted word:"+d);
+						System.out.print("Encrypted word:");
 					}
 					
-                                         System.out.println(line);
-										
+					
+                     System.out.println(line);						
 
 				}
 				catch(IOException i)
@@ -68,10 +69,22 @@ public class Server
 			System.out.println(i);
 		}
 	}
+	public static String Bob(String word , int key)
+	{
+		char[] chars=word.toCharArray();
+
+		for(int i=0 ; i< chars.length ; i++)
+		{
+				chars[i] -=key;
+		}
+
+		return String.valueOf(chars);
+	}
 
 	public static void main(String args[])
 	{
 		Server server = new Server(500);
 	}
+	
 }
 

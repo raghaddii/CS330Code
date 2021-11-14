@@ -58,7 +58,7 @@ public class Client{
                 line = input.readLine();
 
 				if (line.startsWith("2")){
-					//Encryotion code goes here
+					line=Alice(line ,3);
 				}	
 					
 					out.writeUTF(line);	
@@ -85,6 +85,18 @@ public class Client{
 		{
 			System.out.println(i);
 		}
+	}
+	public static String Alice(String s , int key)
+	{
+
+		char[] chars=s.toCharArray();
+		 		
+		for(int i=0 ; i< chars.length ; i++)
+		{
+				chars[i] +=key;
+		}
+	
+		return String.valueOf(chars);
 	}
 
 	public static void main(String args[])
