@@ -8,6 +8,7 @@ public class Server
 	private Socket		 socket = null;
 	private ServerSocket server = null;
 	private DataInputStream in	 = null;
+	private DataOutputStream out = null;
 
 	// constructor with port
 	public Server(int port)
@@ -24,8 +25,10 @@ public class Server
 			System.out.println("Client accepted");
 
 			// takes input from the client socket
-			in = new DataInputStream(
-				new BufferedInputStream(socket.getInputStream()));
+			in = new DataInputStream(new BufferedInputStream(socket.getInputStream()));
+
+			// sends output to the socket
+			out = new DataOutputStream(socket.getOutputStream());
 
 			String line = "";
 
@@ -35,22 +38,26 @@ public class Server
 				try
 				{
 					line = in.readUTF();
+
 					if(line.equals("3"))
 					break;
 
 					if(line.startsWith("1")){
-						line = line.substring(1);
+						line = line.substring(1)+ " arrived";
+						
 					}
 
 					else {							//Since there's no other choise, go option 2
 						line = line.substring(1);
-						String d =Bob(line,3);
+						String d = Bob(line,3);
 						System.out.println("Decrypted word:"+d);
 						System.out.print("Encrypted word:");
+						
 					}
 					
 					
-                     System.out.println(line);						
+                     System.out.println(line);
+					 out.writeUTF(line);							
 
 				}
 				catch(IOException i)
@@ -63,6 +70,7 @@ public class Server
 			// close connection
 			socket.close();
 			in.close();
+			out.close();
 		}
 		catch(IOException i)
 		{
