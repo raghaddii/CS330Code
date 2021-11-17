@@ -1,7 +1,6 @@
 // A Java program for a Client
 import java.net.*;
 import java.io.*;
-import java.util.*;
 
 
 public class Client{
@@ -9,6 +8,7 @@ public class Client{
 	// initialize socket and input output streams
 	private Socket socket		 = null;
 	private DataInputStream input = null;
+	private DataInputStream in = null;
 	private DataOutputStream out	 = null;
 
 
@@ -28,6 +28,9 @@ public class Client{
 
 			// sends output to the socket
 			out = new DataOutputStream(socket.getOutputStream());
+			
+			// takes input from the server socket
+			in = new DataInputStream(new BufferedInputStream(socket.getInputStream()));
 
 		}
 		catch(UnknownHostException u)
@@ -58,10 +61,12 @@ public class Client{
                 line = input.readLine();
 
 				if (line.startsWith("2")){
-					line=Alice(line ,3);
+					line = Alice(line ,3);
 				}	
 					
 					out.writeUTF(line);	
+					line = in.readUTF();
+					System.out.println(line);	
 				
 			 }
 			
@@ -78,6 +83,7 @@ public class Client{
 		try
 		{
 			input.close();
+			in.close();
 			out.close();
 			socket.close();
 		}
