@@ -5,9 +5,9 @@ import java.io.*;
 public class Server
 {
 	//initialize socket and input stream
-	private Socket		 socket = null;
-	private ServerSocket server = null;
-	private DataInputStream in	 = null;
+	private Socket		  socket = null;
+	private ServerSocket  server = null;
+	private DataInputStream   in = null;
 	private DataOutputStream out = null;
 
 	// constructor with port
@@ -43,21 +43,19 @@ public class Server
 					break;
 
 					if(line.startsWith("1")){
-						line = line.substring(1)+ " arrived";
-						
-					}
-
-					else {							//Since there's no other choise, go option 2
 						line = line.substring(1);
-						String d = Bob(line,3);
-						System.out.println("Decrypted word:"+d);
-						System.out.print("Encrypted word:");
 						
 					}
+                    else {							//Since there's no other choise, go option 2
+						line = line.substring(1);
+						String Encrypted = Alice(line,3);
+						System.out.println("Decrypted word:" + line);
+						System.out.print("Encrypted word:");
+						line = Encrypted;
+					}
 					
-					
-                     System.out.println(line);
-					 out.writeUTF(line);							
+                    System.out.println(line);
+					out.writeUTF(line);							
 
 				}
 				catch(IOException i)
@@ -77,18 +75,18 @@ public class Server
 			System.out.println(i);
 		}
 	}
-	public static String Bob(String word , int key)
+	public static String Alice(String s , int key)
 	{
-		char[] chars=word.toCharArray();
 
+		char[] chars=s.toCharArray();
+		 		
 		for(int i=0 ; i< chars.length ; i++)
 		{
-				chars[i] -=key;
+				chars[i] +=key;
 		}
-
+	
 		return String.valueOf(chars);
 	}
-
 	public static void main(String args[])
 	{
 		Server server = new Server(500);
