@@ -6,10 +6,10 @@ import java.io.*;
 public class Client{
 
 	// initialize socket and input output streams
-	private Socket socket		 = null;
+	private Socket         socket = null;
 	private DataInputStream input = null;
-	private DataInputStream in = null;
-	private DataOutputStream out	 = null;
+	private DataInputStream    in = null;
+	private DataOutputStream  out = null;
 
 
 
@@ -44,37 +44,37 @@ public class Client{
 
 		// string to read message from input
 		String line = "";
+		char mode   = '0'; 
+
+		System.out.println("1- Open mode");
+		System.out.println("2- Secure mode");
+		System.out.println("3- Quit");
         
 
-		// keep reading until "Over" is input
+		// keep reading until "3" is input
 
 		while (!line.equals("3")){
-
-
-			System.out.println("1- Open mode");
-			System.out.println("2- Secure mode");
-			System.out.println("3- Quit");
-		
-		
 			try
             {
                 line = input.readLine();
+				mode = line.charAt(0);
+				out.writeUTF(line);	
+				line = in.readUTF();
 
-				if (line.startsWith("2")){
-					line = Alice(line ,3);
-				}	
-					
-					out.writeUTF(line);	
-					line = in.readUTF();
-					System.out.println(line);	
+				if (mode == '2'){
+					String Decrypted = Bob(line,3);
+					System.out.println("Encrypted word:" + line);
+					System.out.print("Decrypted word:");
+					line = Decrypted;  
+				}
 				
-			 }
-			
+				System.out.println(line);	
+				
+			}
             catch(IOException i)
             {
                 System.out.println(i);
             }
-			
 		}
 
 		System.out.println("Closing connection");
@@ -91,17 +91,19 @@ public class Client{
 		{
 			System.out.println(i);
 		}
+			
+				
 	}
-	public static String Alice(String s , int key)
+	
+	public static String Bob(String word , int key)
 	{
+		char[] chars=word.toCharArray();
 
-		char[] chars=s.toCharArray();
-		 		
 		for(int i=0 ; i< chars.length ; i++)
 		{
-				chars[i] +=key;
+			chars[i] -=key;
 		}
-	
+
 		return String.valueOf(chars);
 	}
 
