@@ -23,6 +23,7 @@ public class Server
 
 			socket = server.accept();
 			System.out.println("Client accepted");
+			System.out.println();
 
 			// takes input from the client socket
 			in = new DataInputStream(new BufferedInputStream(socket.getInputStream()));
@@ -37,14 +38,15 @@ public class Server
 			{
 				try
 				{
-					line = in.readUTF();
+					line = in.readUTF();          //reading from Client
 
 					if(line.equals("3"))
 					break;
 
+					System.out.println("Server Reflect: ");
+
 					if(line.startsWith("1")){
-						line = line.substring(1);
-						
+						line = line.substring(1);	
 					}
                     else {							//Since there's no other choise, go option 2
 						line = line.substring(1);
@@ -55,7 +57,8 @@ public class Server
 					}
 					
                     System.out.println(line);
-					out.writeUTF(line);							
+					System.out.println();	
+					out.writeUTF(line);	             //writing to Client						
 
 				}
 				catch(IOException i)
