@@ -46,20 +46,26 @@ public class Client{
 		String line = "";
 		char mode   = '0'; 
 
-		System.out.println("1- Open mode");
-		System.out.println("2- Secure mode");
-		System.out.println("3- Quit");
-        
+		// keep reading/writing until "3" is input
 
-		// keep reading until "3" is input
+		while (true){
 
-		while (!line.equals("3")){
+			System.out.println("1 Open mode");
+		    System.out.println("2 Secure mode");
+		    System.out.println("3 Quit");
+
 			try
             {
                 line = input.readLine();
 				mode = line.charAt(0);
-				out.writeUTF(line);	
-				line = in.readUTF();
+				out.writeUTF(line);	                 //writing to Server
+
+				if(line.equals("3"))
+				break;
+
+				System.out.println("Client Received: ");
+
+				line = in.readUTF();                     // reading from Server
 
 				if (mode == '2'){
 					String Decrypted = Bob(line,3);
@@ -68,7 +74,8 @@ public class Client{
 					line = Decrypted;  
 				}
 				
-				System.out.println(line);	
+				System.out.println(line);
+				System.out.println();	
 				
 			}
             catch(IOException i)
