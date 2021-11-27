@@ -1,3 +1,12 @@
+
+//CS330 Sec.374
+//Team Members:
+// Areej Turky Alotaibi	  440023303
+// Raghad Adel Alshabana  440021235
+// Shoroog Saad Alarifi	  440022128
+// Shoug Ali Alsuhaibani  440022732
+
+
 // A Java program for a Client
 import java.net.*;
 import java.io.*;
