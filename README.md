@@ -15,3 +15,8 @@ When server is running, the client will ask the user to select one of the option
 - Shoug Ali Alsuhaibani   ssuhaibani@sm.imamu.edu.sa
 
 ### Supervised By: Basma Alsouli
+
+## Index
+- [Client Code](https://github.com/alsuhaibanishoug/CS330Code/blob/main/Code/Client.java)
+- [Server Code](https://github.com/alsuhaibanishoug/CS330Code/blob/main/Code/Server.java)
+- [Encryption Decryption Code](https://github.com/alsuhaibanishoug/CS330Code/blob/main/Code/EncryptionDecryption.java)
