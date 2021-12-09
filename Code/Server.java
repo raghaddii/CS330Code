@@ -65,7 +65,7 @@ public class Server
 						line = Encrypted;
 					}
 					
-                    System.out.println(line);
+                                        System.out.println(line);
 					System.out.println();	
 					out.writeUTF(line);	             //writing to Client						
 
