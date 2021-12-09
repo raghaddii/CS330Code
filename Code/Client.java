@@ -77,7 +77,7 @@ public class Client{
 				line = in.readUTF();                     // reading from Server
 
 				if (mode == '2'){
-					String Decrypted = Bob(line,3);
+					String Decrypted = Bob(line,3);  // decrypting the received word
 					System.out.println("Encrypted word:" + line);
 					System.out.print("Decrypted word:");
 					line = Decrypted;  
@@ -110,7 +110,7 @@ public class Client{
 			
 				
 	}
-	
+	// Decryption Function 
 	public static String Bob(String word , int key)
 	{
 		char[] chars=word.toCharArray();
