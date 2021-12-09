@@ -57,9 +57,9 @@ public class Server
 					if(line.startsWith("1")){
 						line = line.substring(1);	
 					}
-                    else {							//Since there's no other choise, go option 2
+                    else {							            //Since there's no other choise, go option 2
 						line = line.substring(1);
-						String Encrypted = Alice(line,3);
+						String Encrypted = Alice(line,3);          // encrypting the received word
 						System.out.println("Decrypted word:" + line);
 						System.out.print("Encrypted word:");
 						line = Encrypted;
@@ -87,6 +87,7 @@ public class Server
 			System.out.println(i);
 		}
 	}
+	// Encryption Function 
 	public static String Alice(String s , int key)
 	{
 
