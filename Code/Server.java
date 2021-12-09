@@ -1,3 +1,5 @@
+// the original code  was acquired from the following website with some modifications to meet the project's requirements. 
+// https://www.geeksforgeeks.org/socket-programming-in-java/
 
 //CS330 Sec.374
 //Team Members:
