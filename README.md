@@ -1,4 +1,4 @@
-# CS330 Course Project 
+# TCP-client-server-application 
 ## Description 
 This project is to develop a simple TCP-based client server application. TCP client/server will communicate over the network and exchange data. The server will start in passive mode listening for a transmission from the client. The client will then start and contact the server (on a given IP address and port number). The user of the client application types in a word/phrase that will be sent to the server; the server will send back a copy of the word.
 When server is down the client displays an error message.
